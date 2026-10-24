@@ -1,0 +1,23 @@
+* Qucs 26.1.1  C:/Users/SAKETH/QucsWorkspace/CMOS_NAND_NOR_prj/cmos_nor.sch
+.INCLUDE "C:/Program Files/Qucs-S/share/qucs-s/xspice_cmlib/include/ngspice_mathfunc.inc"
+M1 _net0  A  _net1  _net0 PM
+M2 _net1  B  vout  _net0 PM
+V2 A 0 DC 0 PULSE(0 5 0N 1U 1U {(20N)-(0N)-(1U)-(1U)}) AC 0
+V1 B 0 DC 0 PULSE(0 5 20N 1U 1U {(40N)-(20N)-(1U)-(1U)}) AC 0
+V3 _net0 0 DC 5
+
+M3 vout  B  0  0 NM
+M4 vout  A  0  0 NM
+.model NM NMOS (LEVEL =1 VTO=0.7 KP= 100U LAMBDA =0.02 )
+.model PM PMOS (LEVEL =1 VTO=-0.07 KP=50u LAMBDA =0.02 )
+
+.control
+
+tran 4.0201e-10 8e-08 0 
+write spice4qucs.tr1.plot v(A) v(B) v(vout)
+destroy all
+reset
+
+exit
+.endc
+.END
