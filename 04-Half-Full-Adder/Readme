@@ -1,0 +1,74 @@
+# Project 4: Half Adder and Full Adder using Verilog
+
+## Overview
+This project implements and simulates Half Adder and Full Adder circuits using Verilog HDL. The circuits are verified using Icarus Verilog, and their waveforms are analyzed using GTKWave.
+
+## Objectives
+- Design a Half Adder using Verilog.
+- Design a Full Adder using Verilog.
+- Verify all input combinations.
+- Analyze simulation waveforms using GTKWave.
+
+## Tools Used
+- Verilog HDL
+- Icarus Verilog
+- GTKWave
+
+## 1. Half Adder
+
+A Half Adder adds two 1-bit binary inputs and produces Sum and Carry outputs.
+
+### Boolean Equations
+- Sum = A XOR B
+- Carry = A AND B
+
+### Truth Table
+
+| A | B | Sum | Carry |
+|---|---|-----|-------|
+| 0 | 0 | 0 | 0 |
+| 0 | 1 | 1 | 0 |
+| 1 | 0 | 1 | 0 |
+| 1 | 1 | 0 | 1 |
+
+## 2. Full Adder
+
+A Full Adder adds three 1-bit inputs: A, B, and Carry-In (Cin). It produces Sum and Carry-Out (Cout).
+
+### Boolean Equations
+- Sum = A XOR B XOR Cin
+- Cout = (A AND B) OR (Cin AND (A XOR B))
+
+### Truth Table
+
+| A | B | Cin | Sum | Cout |
+|---|---|-----|-----|------|
+| 0 | 0 | 0 | 0 | 0 |
+| 0 | 0 | 1 | 1 | 0 |
+| 0 | 1 | 0 | 1 | 0 |
+| 0 | 1 | 1 | 0 | 1 |
+| 1 | 0 | 0 | 1 | 0 |
+| 1 | 0 | 1 | 0 | 1 |
+| 1 | 1 | 0 | 0 | 1 |
+| 1 | 1 | 1 | 1 | 1 |
+
+## Simulation and Verification
+- Compiled and simulated successfully using Icarus Verilog.
+- Tested all eight combinations of A, B, and Cin for the Full Adder.
+- Verified the output against binary addition.
+- Generated a VCD waveform file.
+- Inspected the waveforms using GTKWave.
+
+## Project Files
+- `half_full_adder.v` — Verilog design and testbench.
+- `half_full_adder.vcd` — Simulation waveform.
+
+## Learning Outcomes
+- Understanding combinational logic circuits.
+- Implementing binary addition in Verilog.
+- Writing and running a testbench.
+- Verifying digital circuits using simulation.
+- Analyzing signal transitions in GTKWave.
+
+## Author
+Saketh Reddy
