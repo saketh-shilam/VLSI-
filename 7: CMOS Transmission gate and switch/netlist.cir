@@ -1,0 +1,22 @@
+* Qucs 26.1.1  C:/Users/SAKETH/QucsWorkspace/ CMOS Transmission Gate and Switch_prj/gates.sch
+.INCLUDE "C:/Program Files/Qucs-S/share/qucs-s/xspice_cmlib/include/ngspice_mathfunc.inc"
+R1 0 VOUT  10K tc1=0.0 tc2=0.0 
+V1 EN 0 DC 0 PULSE(0 5 0N 1U 1U {(10N)-(0N)-(1U)-(1U)}) AC 0
+V2 EN_BAR 0 DC 0 PULSE(5 0 0N 1U 1U {(10N)-(0N)-(1U)-(1U)}) AC 0
+V3 Vin 0 DC 0 PULSE(0 5 0N 1U 1U {(5N)-(0N)-(1U)-(1U)}) AC 0
+
+M3 Vin  EN_BAR  VOUT  VOUT PM
+M2 Vin  EN  VOUT  VOUT NM
+.model NM NMOS (LEVEL=1 VTO=0.7 KP=100u LAMBDA=0.02)
+.model PM PMOS (LEVEL=1 VTO=-0.7 KP=50u LAMBDA=0.02)
+
+.control
+
+tran 2.51256e-10 5e-08 0 
+write spice4qucs.tr1.plot v(EN) v(EN_BAR) v(VOUT) v(Vin)
+destroy all
+reset
+
+exit
+.endc
+.END
