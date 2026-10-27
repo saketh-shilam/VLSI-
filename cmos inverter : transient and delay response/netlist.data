@@ -1,0 +1,20 @@
+* Qucs 26.1.1  C:/Users/SAKETH/QucsWorkspace/05_CMOS_Inverter_prj/cmps inverter sak.sch
+.INCLUDE "C:/Program Files/Qucs-S/share/qucs-s/xspice_cmlib/include/ngspice_mathfunc.inc"
+V2 _net1 0 DC 5
+V1 _net0 0 DC 0 PULSE(0 5 20N 1N 1N {(40N)-(20N)-(1N)-(1N)}) AC 0
+M1 _net1  _net0  VOUT  _net1 PM
+M2 VOUT  _net0  0  0 NM
+
+.model PM PMOS (LEVEL=1 VTO=-0.7 KP=50u LAMBDA=0.02))
+.model NM NMOS (LEVEL=1 VTO=0.7 KP=100u LAMBDA=0.02)
+
+.control
+
+tran 5.02513e-10 1e-07 0 
+write spice4qucs.tr1.plot v(VOUT)
+destroy all
+reset
+
+exit
+.endc
+.END
