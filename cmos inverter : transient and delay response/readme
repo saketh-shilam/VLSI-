@@ -1,0 +1,101 @@
+# CMOS Inverter Design and Transient Simulation
+
+## 1. Project Overview
+
+This project demonstrates the design and transient simulation of a CMOS inverter using Qucs-S and Ngspice.
+
+A CMOS inverter is a fundamental digital circuit that produces the logical complement of its input. It uses a PMOS transistor as the pull-up network and an NMOS transistor as the pull-down network.
+
+## 2. Objectives
+
+- Design a CMOS inverter circuit.
+- Understand PMOS and NMOS transistor operation.
+- Apply a pulse input signal.
+- Perform transient analysis using Qucs-S and Ngspice.
+- Observe the relationship between input and output voltages.
+- Verify the inverter's switching behavior.
+
+## 3. Tools Used
+
+- **Schematic Design:** Qucs-S 26.1.1
+- **Simulation Engine:** Ngspice
+- **Circuit Type:** CMOS Inverter
+- **Analysis:** Transient Analysis
+
+## 4. Circuit Components
+
+| Component | Description |
+|---|---|
+| PMOS transistor | Pull-up network |
+| NMOS transistor | Pull-down network |
+| DC voltage source | 5 V supply |
+| Pulse voltage source | Input signal |
+| Ground | Reference voltage |
+| Transient simulation block | Time-domain analysis |
+
+## 5. Circuit Operation
+
+A CMOS inverter consists of one PMOS transistor and one NMOS transistor.
+
+### Case 1: Input LOW
+
+When the input voltage is 0 V:
+
+- PMOS turns ON.
+- NMOS turns OFF.
+- Output voltage rises toward the supply voltage.
+
+**Expected output: HIGH (approximately 5 V).**
+
+### Case 2: Input HIGH
+
+When the input voltage is 5 V:
+
+- PMOS turns OFF.
+- NMOS turns ON.
+- Output voltage falls toward ground.
+
+**Expected output: LOW (approximately 0 V).**
+
+## 6. Input Signal
+
+The input is a pulse signal switching between 0 V and 5 V.
+
+| Parameter | Value |
+|---|---|
+| Low voltage | 0 V |
+| High voltage | 5 V |
+| Input signal | Pulse |
+| Simulation type | Transient |
+| Observed simulation interval | 0–100 ns |
+
+## 7. Simulation Results
+
+The transient waveform shows the input and output voltage variations over time.
+
+- When the input is LOW, the output is HIGH.
+- When the input is HIGH, the output is LOW.
+- The output follows the logical complement of the input.
+
+The observed waveform demonstrates the expected switching behavior of a CMOS inverter.
+
+## 8. Truth Table
+
+| Input (A) | Output (Y) |
+|---:|---:|
+| 0 | 1 |
+| 1 | 0 |
+
+Boolean expression:
+
+**Y = NOT(A) = A̅**
+
+## 9. Files in This Project
+
+```text
+01_cmos_inverter/
+├── README.md
+├── cmos_inverter_sak.sch
+└── images/
+    ├── circuit_schematic.png
+    └── transient_waveform.png
