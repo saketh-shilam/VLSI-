@@ -1,0 +1,93 @@
+# Project 06: CMOS Transmission Gate and Switch
+
+## Overview
+
+This project implements a CMOS transmission gate using one PMOS and one NMOS transistor connected in parallel. Complementary enable signals control the switch, allowing an input signal to pass to the output when enabled.
+
+## Objectives
+
+* Understand CMOS transmission-gate operation.
+* Design a transistor-level circuit using PMOS and NMOS devices.
+* Apply complementary control signals (`EN` and `EN_BAR`).
+* Simulate the circuit's transient response using Qucs-S and Ngspice.
+
+## Tools Used
+
+* **Schematic design:** Qucs-S 26.1.1
+* **Simulation engine:** Ngspice
+* **Model:** Level-1 MOSFET SPICE models
+
+## Circuit Components
+
+| Component | Description                     |
+| --------- | ------------------------------- |
+| M2        | NMOS transistor                 |
+| M3        | PMOS transistor                 |
+| V1        | Enable signal (`EN`)            |
+| V2        | Complementary enable (`EN_BAR`) |
+| V3        | Input signal (`Vin`)            |
+| R1        | 10 kΩ output pull-down resistor |
+| TR1       | Transient simulation block      |
+
+## Circuit Operation
+
+|  EN | EN_BAR | Switch state | Expected output         |
+| --: | -----: | ------------ | ----------------------- |
+| 0 V |    5 V | OFF          | Pulled toward 0 V by R1 |
+| 5 V |    0 V | ON           | Follows `Vin`           |
+
+When enabled, the NMOS and PMOS conduct together, allowing both logic HIGH and logic LOW signals to pass more effectively than a single MOSFET switch.
+
+When disabled, both transistors turn OFF, isolating the input from the output. The pull-down resistor provides a defined LOW output.
+
+## Transistor Models
+
+Example Level-1 model parameters:
+
+```spice
+.model NM NMOS (LEVEL=1 VTO=0.7 KP=100u LAMBDA=0.02)
+.model PM PMOS (LEVEL=1 VTO=-0.7 KP=50u LAMBDA=0.02)
+```
+
+These are illustrative simulation models, not measured device parameters.
+
+## Simulation Settings
+
+* Analysis: Transient
+* Start time: 0 ns
+* Stop time: 50 ns
+* Maximum time step: 0.1 ns, if supported by the simulation setup
+
+## Expected Results
+
+* `Vin` switches between 0 V and 5 V.
+* `EN` and `EN_BAR` operate as complementary signals.
+* `Vout` follows `Vin` while the transmission gate is enabled.
+* `Vout` is pulled toward 0 V while the gate is disabled.
+
+**Status:** Simulation results and correct body-terminal connections must be verified before marking the project fully validated.
+
+## Learning Outcomes
+
+* Understanding four-terminal MOSFET symbols.
+* Connecting PMOS and NMOS devices in parallel.
+* Using complementary control signals.
+* Configuring transient simulations in Qucs-S.
+* Interpreting input, enable, and output waveforms.
+
+## Repository Structure
+
+```text
+Project-06-CMOS-Transmission-Gate/
+├── README.md
+├── transmission_gate.sch
+├── circuit_diagram.png
+└── simulation_results.png
+```
+
+## Conclusion
+
+This project demonstrates the design principles of a CMOS transmission gate and its use as a digitally controlled electronic switch. The circuit and simulation results should be verified before final portfolio submission.
+
+**Author:** Saketh Reddy
+**Project:** VLSI Portfolio — Project 06
